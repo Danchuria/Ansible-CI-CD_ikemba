@@ -1,0 +1,23 @@
+---
+- name: Deploy app
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Instalar git
+      apt:
+        name: git
+        state: present
+
+    - name: Crear carpeta app
+      file:
+        path: /home/deploy/apps/myapp
+        state: directory
+        owner: deploy
+        group: deploy
+
+    - name: Clonar repo
+      git:
+        repo: https://github.com/Danchuria/Ansible-CI-CD_ikemba.git
+        dest: /home/deploy/apps/myapp
+        force: yes
