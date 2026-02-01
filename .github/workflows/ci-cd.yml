@@ -23,6 +23,7 @@ jobs:
 
       - name: Ejecutar Ansible
         run: |
-          ansible-playbook ansible/playbooks/deploy.yml \
-          -i ansible/inventories/production.yml \
-          --ssh-common-args='-o StrictHostKeyChecking=no'
+          cd ansible
+          ansible-playbook playbooks/deploy.yml \
+            -i inventories/production.yml \
+            --ssh-common-args='-o StrictHostKeyChecking=no'
